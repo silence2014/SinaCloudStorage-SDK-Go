@@ -678,7 +678,7 @@ func (scs *SCS) run(req *request) (hresp *http.Response, err error) {
 	htCli := &http.Client{
 		Transport: &http.Transport{
 			Dial: func(netw, addr string) (net.Conn, error) {
-				c, err := net.DialTimeout(netw, addr, time.Second*5) //设置建立连接超时时间
+				c, err := net.DialTimeout(netw, addr, time.Second*1) //设置建立连接超时时间
 				if err != nil {
 					return nil, err
 				}
