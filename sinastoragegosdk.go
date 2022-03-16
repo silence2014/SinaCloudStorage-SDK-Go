@@ -697,6 +697,7 @@ func (scs *SCS) run(req *request) (hresp *http.Response, err error) {
 	}
 	if hresp.StatusCode != 200 && hresp.StatusCode != 204 && hresp.StatusCode != 206 {
 		fmt.Println("SinaCloudStorage-SDK, resp.StatusCode:", hresp.StatusCode)
+		defer hresp.Body.Close()
 		return nil, buildError(hresp)
 	}
 	return hresp, nil
