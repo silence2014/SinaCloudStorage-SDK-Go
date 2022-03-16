@@ -609,6 +609,7 @@ func (scs *SCS) query(req *request) (data []byte, err error) {
 	}
 	hresp, err := scs.run(req)
 	if err != nil || hresp == nil {
+		fmt.Println("SinaCloudStorage-SDK, err:", err, "hresp:", hresp)
 		return nil, err
 	}
 	data, err = ioutil.ReadAll(hresp.Body)
@@ -695,6 +696,7 @@ func (scs *SCS) run(req *request) (hresp *http.Response, err error) {
 		return nil, err
 	}
 	if hresp.StatusCode != 200 && hresp.StatusCode != 204 && hresp.StatusCode != 206 {
+		fmt.Println("SinaCloudStorage-SDK, resp.StatusCode:", hresp.StatusCode)
 		return nil, buildError(hresp)
 	}
 	return hresp, nil
